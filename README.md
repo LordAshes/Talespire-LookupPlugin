@@ -20,7 +20,9 @@ Use R2ModMan or similar installer to install this plugin.
 The plugins adds 3 chat operations:
 
 ``/lu topic`` (Look Up): Displays the related topic. The topic given must match a topic file for the search to succeed.
+
 ``/fd keywords`` (Find): Display the first topic which contains the keyword or keywords.
+
 ``/fa keywords`` (Find All): Display all topics which contains the keyword or keywords.
 
 Note: If multiple keywords are provdied then they must appear in the order given. For example "healing spell" will find
