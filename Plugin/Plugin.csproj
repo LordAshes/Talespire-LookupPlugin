@@ -115,6 +115,19 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LookUpEngine\LookUpEngine.csproj">
+      <Project>{2ec4c1f5-d95a-4c25-9271-e31ac8cb58ba}</Project>
+      <Name>LookUpEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CustomData\Providers\DndBeyondSpellProvider.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CustomData\Providers\LocalFileProvider.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

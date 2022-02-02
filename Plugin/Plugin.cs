@@ -14,9 +14,10 @@ namespace LordAshes
         // Plugin info
         public const string Name = "Lookup Plug-In";              
         public const string Guid = "org.lordashes.plugins.lookup";
-        public const string Version = "1.0.0.0";
+        public const string Version = "1.1.0.0";
 
         // Configuration
+        private string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+"/";
         private string data = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"/CustomData/Sources/";
 
         void Awake()
@@ -37,12 +38,22 @@ namespace LordAshes
             switch (cmd)
             {
                 case "/LU":
-                    foreach (string content in System.IO.Directory.EnumerateFiles(data, "*."))
+                    using (System.Diagnostics.Process process = new System.Diagnostics.Process())
                     {
-                        if(System.IO.Path.GetFileNameWithoutExtension(content).ToUpper()==keyword.ToUpper())
-                        return "<color=grey>"+FileAccessPlugin.File.ReadAllText(content);
+                        process.StartInfo = new System.Diagnostics.ProcessStartInfo()
+                        {
+                            WorkingDirectory = dir,
+                            FileName = dir+"LookUpEngine.exe",
+                            Arguments = keyword,
+                            CreateNoWindow = true,
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true
+                        };
+                        process.Start();
+                        string output = process.StandardOutput.ReadToEnd();
+                        process.WaitForExit();
+                        return output;
                     }
-                    break;
                 case "/FD":
                     foreach(string content in System.IO.Directory.EnumerateFiles(data,"*."))
                     {
